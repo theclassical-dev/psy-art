@@ -15,6 +15,8 @@ class CreateProfileLinksTable extends Migration
     {
         Schema::create('profile_links', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
+            $table->string('link');
             $table->timestamps();
         });
     }

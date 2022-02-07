@@ -15,6 +15,14 @@ class CreateArtDetailsTable extends Migration
     {
         Schema::create('art_details', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('size');
+            $table->string('description');
+            $table->string('price');
+            $table->string('discount');
+            $table->string('artType');
+            $table->string('image');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

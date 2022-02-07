@@ -15,6 +15,11 @@ class CreateAccDetailsTable extends Migration
     {
         Schema::create('acc_details', function (Blueprint $table) {
             $table->id();
+            $table->string('bank');
+            $table->string('accType');
+            $table->string('accName');
+            $table->string('accNumber');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

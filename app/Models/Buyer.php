@@ -10,6 +10,6 @@ class Buyer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fullname','email','username','tel','password','Unique_id'
+        'fullname','email','username','tel','Unique_id','password'
     ];
 }

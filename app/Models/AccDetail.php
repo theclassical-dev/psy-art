@@ -10,6 +10,6 @@ class AccDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Bank','accType','accName','accNumber','user_id'
+        'bank','accType','accName','accNumber','user_id'
     ];
 }
