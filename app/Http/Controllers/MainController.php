@@ -73,7 +73,7 @@ class MainController extends Controller
         ]);
         
         $imgRes = [
-            "image_url" => Storage::disk('public')->url($file),
+            "image_url" => Storage::disk('public')->url('arts/'.$file),
             "mime" => $img->getClientMimeType(),
         ];
         
