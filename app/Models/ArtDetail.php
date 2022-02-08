@@ -12,4 +12,8 @@ class ArtDetail extends Model
     protected $fillable = [
         'title', 'size', 'description','price', 'discount','artType','image','user_id'
     ];
+
+    public function user(){
+        return $this->hasMany(User::class, 'user_id', 'user_id');
+    }
 }

@@ -39,4 +39,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function artDetail(){
+        return $this->belongsTo(ArtDetail::class);
+    }
+
+    public function accDetail(){
+        return $this->belongsTo(AccDetail::class);
+    }
 }

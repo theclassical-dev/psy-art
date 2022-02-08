@@ -14,12 +14,16 @@ use App\Http\Controllers\AdminController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//users
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
-//admin register
+
+//admin
 Route::post('/boss/register', [App\Http\Controllers\AdminController::class, 'register']);
 Route::post('/boss/login', [App\Http\Controllers\AdminController::class, 'login']);
 
+//admin middleware
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
 
     Route::get('/get', [App\Http\Controllers\AdminController::class, 'get']);
@@ -27,6 +31,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
     
 });
 
+//user middleware
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function () {
 
     Route::get('/getus', [App\Http\Controllers\AuthController::class, 'get']);

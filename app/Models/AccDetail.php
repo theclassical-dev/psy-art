@@ -12,4 +12,8 @@ class AccDetail extends Model
     protected $fillable = [
         'bank','accType','accName','accNumber','user_id'
     ];
+
+    public function user(){
+        return $this->hasOne(AccDetail::class, 'user_id', 'user_id');
+    }
 }
