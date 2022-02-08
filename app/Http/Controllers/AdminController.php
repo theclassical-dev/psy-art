@@ -63,4 +63,8 @@ class AdminController extends Controller
             'message' => 'Logged out'
         ];
     }
+
+    public function get(Request $request){
+        return Admin::all();
+    }
 }

@@ -20,7 +20,17 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/boss/register', [App\Http\Controllers\AdminController::class, 'register']);
 Route::post('/boss/login', [App\Http\Controllers\AdminController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
+
+    Route::get('/get', [App\Http\Controllers\AdminController::class, 'get']);
+    
 });
+
+Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function () {
+
+    Route::get('/get', [App\Http\Controllers\AuthController::class, 'get']);
+    
+});
+
+
 
