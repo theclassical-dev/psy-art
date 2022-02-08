@@ -23,12 +23,14 @@ Route::post('/boss/login', [App\Http\Controllers\AdminController::class, 'login'
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
 
     Route::get('/get', [App\Http\Controllers\AdminController::class, 'get']);
+    Route::post('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
     
 });
 
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function () {
 
-    Route::get('/get', [App\Http\Controllers\AuthController::class, 'get']);
+    Route::get('/getus', [App\Http\Controllers\AuthController::class, 'get']);
+    Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
     
 });
 
