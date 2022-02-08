@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
     Route::post('/createAccountDatials', [App\Http\Controllers\MainController::class, 'createAccDetail']);
     Route::post('/updateAccDetail/{id}', [App\Http\Controllers\MainController::class, 'updateAccDetail']);
+    Route::post('/uploadArt', [App\Http\Controllers\MainController::class, 'uploadArt']);
     
 });
 
