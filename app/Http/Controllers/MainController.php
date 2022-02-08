@@ -28,4 +28,17 @@ class MainController extends Controller
 
         return $acc;
     }
+
+    public function updateAccDetail(Request $request, $id) {
+        $id = auth()->user()->id;
+        if(!auth()->user()){
+            return [
+                'message' => 'unauthorized'
+            ];
+        }
+        $acc = AccDetail::find($id);
+        $acc->update($request->all());
+        return $acc;
+
+    }
 }

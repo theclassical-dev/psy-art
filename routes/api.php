@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
     Route::get('/getus', [App\Http\Controllers\AuthController::class, 'get']);
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
     Route::post('/createAccountDatials', [App\Http\Controllers\MainController::class, 'createAccDetail']);
+    Route::post('/updateAccDetail/{id}', [App\Http\Controllers\MainController::class, 'updateAccDetail']);
     
 });
 
