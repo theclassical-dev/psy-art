@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
 
     Route::get('/getus', [App\Http\Controllers\AuthController::class, 'get']);
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
+    Route::post('/createAccountDatials', [App\Http\Controllers\MainController::class, 'createAccDetail']);
     
 });
 
