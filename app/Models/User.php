@@ -41,7 +41,7 @@ class User extends Authenticatable
     ];
 
     public function artDetail(){
-        return $this->belongsTo(ArtDetail::class);
+        return $this->hasMany(ArtDetail::class);
     }
 
     public function accDetail(){

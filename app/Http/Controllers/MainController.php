@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Models\AccDetail;
 use App\Models\ArtDetail;
+use Auth;
 
 
 class MainController extends Controller
@@ -32,7 +33,7 @@ class MainController extends Controller
 
     public function updateAccDetail(Request $request, $id) {
         $id = auth()->user()->id;
-        if(!auth()->user()){
+        if(!auth()->user()->id){
             return [
                 'message' => 'unauthorized'
             ];
@@ -49,7 +50,7 @@ class MainController extends Controller
             'size' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
-            // 'discount' => 'nullable|string',
+            'discount' => 'nullable|string',
             'artType' => 'required|string',
             'image' => 'required',
         ]);
@@ -86,5 +87,65 @@ class MainController extends Controller
 
         return response()->json($response, 201);
 
+    }
+
+    public function updateArt(Request $request, $id){
+
+        $d = auth()->user()->artDetail()->find($id);
+
+        $c = Auth::user()->artDetail;
+
+        $img = $request->file('image');
+
+        
+        if($d){
+
+            if($request->hasFile('image')){
+
+                $file = $img->getClientOriginalName();
+    
+                if($file == true){
+                    unlink('storage/arts/'.$d->image);
+                }
+                    $img->storeAs('arts', $file, 'public');
+            } 
+            else {
+                    $file = null;
+                }
+    
+            $d->update([
+
+                'title' => request('title'),
+                'size' => request('size'),
+                'description' => request('description'),
+                'price' => request('price'),
+                'discount' => request('discount'),
+                'artType' => request('artType'),
+                'image' => (is_null($file)) ? $d->image : $file,
+            ]);
+            
+            return [
+                'message' => 'successfully updated',
+                'data' => $d
+            ];
+        }
+
+        return [
+            'message' => 'error'
+        ];
+
+    }
+
+    public function getD(Request $request){
+        $r = auth()->user()->artDetail;
+
+        if($r){
+
+            return $r;
+        }
+
+        return [
+            'message' => 'not found'
+        ];
     }
 }

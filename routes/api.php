@@ -40,8 +40,10 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
     Route::post('/createAccountDatials', [App\Http\Controllers\MainController::class, 'createAccDetail']);
     Route::post('/updateAccDetail/{id}', [App\Http\Controllers\MainController::class, 'updateAccDetail']);
     Route::post('/uploadArt', [App\Http\Controllers\MainController::class, 'uploadArt']);
-    
+    Route::put('/updateArt/{id}', [App\Http\Controllers\MainController::class, 'updateArt']);
+    Route::get('/getD', [App\Http\Controllers\MainController::class, 'getD']);
 });
+
 
 
 
