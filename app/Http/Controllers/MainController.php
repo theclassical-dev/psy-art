@@ -49,7 +49,7 @@ class MainController extends Controller
             'size' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
-            'discount' => 'nullable|string',
+            // 'discount' => 'nullable|string',
             'artType' => 'required|string',
             'image' => 'required',
         ]);
@@ -57,7 +57,7 @@ class MainController extends Controller
         $img = $request->file('image');
 
         if($request->hasFile('image')){
-            $file = rand().'.'.$img->getClientOriginalName();
+            $file = $img->getClientOriginalName();
             $img->storeAs('arts', $file, 'public');
         }
         
@@ -74,16 +74,17 @@ class MainController extends Controller
         
         $imgRes = [
             "image_url" => Storage::disk('public')->url('arts/'.$file),
-            "mime" => $img->getClientMimeType(),
+            "mime" => $img->getClientMimeType()
         ];
         
 
         $response = [
-            'details' => $art,
+            'message' => 'successfully uploaded',
+            'data' => $art,
             'location' => $imgRes,
         ];
 
-        return response([$response, 201]);
+        return response()->json($response, 201);
 
     }
 }

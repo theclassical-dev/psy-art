@@ -19,7 +19,7 @@ class CreateArtDetailsTable extends Migration
             $table->string('size');
             $table->string('description');
             $table->string('price');
-            $table->string('discount');
+            $table->string('discount')->nullable();
             $table->string('artType');
             $table->string('image');
             $table->string('user_id');
