@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\AccDetail;
 use App\Models\ArtDetail;
 use Auth;
+use File;
+use URL;
+
 
 
 class MainController extends Controller
@@ -136,16 +139,18 @@ class MainController extends Controller
 
     }
 
-    public function getD(Request $request){
+    public function getArt(Request $request){
+
         $r = auth()->user()->artDetail;
 
-        if($r){
+        if(!$r->isEmpty()){
 
             return $r;
         }
 
         return [
-            'message' => 'not found'
+            'message' => 'No is data available'
         ];
     }
+
 }
