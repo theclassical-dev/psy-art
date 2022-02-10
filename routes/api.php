@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
     Route::put('/updateArt/{id}', [App\Http\Controllers\MainController::class, 'updateArt']);
     Route::get('/getArt', [App\Http\Controllers\MainController::class, 'getArt']);
     Route::get('/getUserAccount', [App\Http\Controllers\MainController::class, 'getAccount']);
+    Route::delete('/deleteArtWork/{id}', [App\Http\Controllers\MainController::class, 'deleteArt']);
 });
 
 

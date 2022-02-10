@@ -164,5 +164,22 @@ class MainController extends Controller
         return [
             'message' => 'No is data available'
         ];
-    }   
+    }
+    
+    public function deleteArt(Request $request, $id){
+        
+        $d = auth()->user()->artDetail()->find($id);
+
+        if($d){
+            unlink('storage/arts/'.$d->image);
+            $d->delete($request->all());
+            return [
+                'message' => 'succesfully Deleted artwork'
+            ];
+        }
+
+        return [
+            'message' => 'No is data available'
+        ];
+    }
 }
