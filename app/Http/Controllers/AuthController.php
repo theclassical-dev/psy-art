@@ -93,8 +93,8 @@ class AuthController extends Controller
         $user = auth()->user()->fname.auth()->user()->lname;
 
         if ($request->hasFile('image')) {
-            $file = $user.'/'.bin2hex(random_bytes(10)).'/'.$img->getClientOriginalName();
-            $img->storeAs('profileimage', $file, 'public');
+            $file = $user.'.'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
+            $img->storeAs('profileImage', $file, 'public');
         }
 
         $pImage = ProfileImage::create([
@@ -104,7 +104,7 @@ class AuthController extends Controller
         ]);
 
         $imgRes = [
-            'image_url' =>Storage::disk('public')->url('profileimage/'.$file),
+            'image_url' =>Storage::disk('public')->url('profileImage/'.$file),
             'mime' => $img->getClientMimeType()
         ];
 
@@ -115,5 +115,41 @@ class AuthController extends Controller
         ];
 
         return response()->json($response, 201);
+    }
+
+    public function updateProfileImage(Request $request, $id) {
+
+        $d = auth()->user()->profileimage()->find($id);
+
+        $img = $request->file('image');
+
+        $user = auth()->user()->fname.auth()->user()->lname;
+        
+        if($d){
+
+            if($request->hasFile('image')){
+
+                $file = $user.'.'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
+                if($file == true) {
+                    unlink('storage/profileImage/'.$d->image);
+                }
+                $img->storeAs('profileImage', $file, 'public');
+            }else{
+                $file = null;
+            }
+
+            $d->update([
+                'image' => (is_null($file)) ? $d->image : $file,
+            ]);
+
+            return [
+                'message' => 'successfully updated',
+                'data' => $d
+            ];
+        }
+
+        return [
+            'message' => 'error'
+        ];
     }
 }
