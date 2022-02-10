@@ -47,6 +47,19 @@ class MainController extends Controller
 
     }
 
+    public function getAccount(Request $request){
+
+        $r = auth()->user()->accDetail;
+
+        if($r){
+            return $r;
+        }
+
+        return [
+            'message' => 'error'
+        ];
+    }
+
     public function uploadArt(Request $request){
         $data = $request->validate([
             'title' => 'required|string',

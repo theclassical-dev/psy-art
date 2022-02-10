@@ -39,11 +39,12 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
 
     Route::get('/getus', [App\Http\Controllers\AuthController::class, 'get']);
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
-    Route::post('/createAccountDatials', [App\Http\Controllers\MainController::class, 'createAccDetail']);
+    Route::post('/createAccountDetails', [App\Http\Controllers\MainController::class, 'createAccDetail']);
     Route::post('/updateAccDetail/{id}', [App\Http\Controllers\MainController::class, 'updateAccDetail']);
     Route::post('/uploadArt', [App\Http\Controllers\MainController::class, 'uploadArt']);
     Route::put('/updateArt/{id}', [App\Http\Controllers\MainController::class, 'updateArt']);
     Route::get('/getArt', [App\Http\Controllers\MainController::class, 'getArt']);
+    Route::get('/getUserAccount', [App\Http\Controllers\MainController::class, 'getAccount']);
 });
 
 

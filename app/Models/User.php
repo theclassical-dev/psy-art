@@ -45,6 +45,6 @@ class User extends Authenticatable
     }
 
     public function accDetail(){
-        return $this->belongsTo(AccDetail::class);
+        return $this->hasOne(AccDetail::class);
     }
 }
