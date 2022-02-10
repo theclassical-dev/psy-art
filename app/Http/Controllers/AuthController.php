@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\ProfileImage;
 
 
 class AuthController extends Controller
@@ -79,5 +81,39 @@ class AuthController extends Controller
 
     public function get(Request $request){
         return User::all();
+    }
+
+    public function uploadProfileImage(Request $request){
+        $data = $request->validate([
+
+            'image' => 'required'
+        ]);
+
+        $img = $request->file('image');
+        $user = auth()->user()->unique_id;
+
+        if ($request->hasFile('image')) {
+            $file = $user.'.'.$img->getClientOriginalName();
+            $img->storeAs('profileimage', $file, 'public');
+        }
+
+        $pImage = ProfileImage::create([
+
+            'user_id' =>auth()->user()->id,
+            'image' =>$file,
+        ]);
+
+        $imgRes = [
+            'image_url' =>Storage::disk('public')->url('profileimage/'.$file),
+            'mime' => $img->getClientMimeType()
+        ];
+
+        $response = [
+            'message' => 'Successfully uploaded',
+            'data' => $pImage,
+            'location' => $imgRes
+        ];
+
+        return response()->json($response, 201);
     }
 }
