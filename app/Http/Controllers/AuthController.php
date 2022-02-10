@@ -90,10 +90,10 @@ class AuthController extends Controller
         ]);
 
         $img = $request->file('image');
-        $user = auth()->user()->unique_id;
+        $user = auth()->user()->fname.auth()->user()->lname;
 
         if ($request->hasFile('image')) {
-            $file = $user.'.'.$img->getClientOriginalName();
+            $file = rand().'/'.$user.'/'.$img->getClientOriginalName();
             $img->storeAs('profileimage', $file, 'public');
         }
 
