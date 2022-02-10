@@ -90,7 +90,7 @@ class AuthController extends Controller
         ]);
 
         $img = $request->file('image');
-        $user = auth()->user()->fname.auth()->user()->lname;
+        $user = auth()->user()->fname.'-'.auth()->user()->lname;
 
         if ($request->hasFile('image')) {
             $file = $user.'/'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
@@ -123,7 +123,7 @@ class AuthController extends Controller
 
         $img = $request->file('image');
 
-        $user = auth()->user()->fname.auth()->user()->lname;
+        $user = auth()->user()->fname.'-'.auth()->user()->lname;
         
         if($d){
 
