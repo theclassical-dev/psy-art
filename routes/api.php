@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PublicController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,7 +16,8 @@ use App\Http\Controllers\MainController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+// all uploaded Arts as gallery
+Route::get('/allArt', [App\Http\Controllers\PublicController::class, 'artGallery']);
 //users
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
