@@ -142,7 +142,7 @@ class MainController extends Controller
     public function getArt(Request $request){
 
         $r = auth()->user()->artDetail;
-
+        
         if(!$r->isEmpty()){
 
             return $r;
@@ -151,6 +151,5 @@ class MainController extends Controller
         return [
             'message' => 'No is data available'
         ];
-    }
-
+    }   
 }
