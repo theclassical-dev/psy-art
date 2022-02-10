@@ -29,4 +29,20 @@ class PublicController extends Controller
         return response()->json($results);
     
     }
+
+    public function gen(Request $request){
+
+        $idColumn = mt_rand();
+        $dateCode = date('ym');
+        $newHumanCode = 'PO-'.$dateCode.substr('0000'.$idColumn, -2);
+
+        $bytes = random_bytes(2);
+        $dateCode = date('ym');
+        $output ='AR|'.$dateCode.'|'.(bin2hex($bytes));
+        return [
+            'numberic' => $newHumanCode,
+            'alphanumeric' => $output
+        ];
+
+    }
 }

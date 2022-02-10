@@ -18,9 +18,13 @@ class AuthController extends Controller
             'email'=>'required|string|unique:users,email',
             'brandName'=>'required|string|unique:users,brandName',
             'tel'=>'required|string|unique:users,tel',
-            'unique_id'=>'required|string|unique:users,unique_id',
             'password'=>'required|string|confirmed'
         ]);
+
+        //unique_id 
+        $bytes = random_bytes(2);
+        $date = date('ym');
+        $output ='AR|'.$date.'|'.(bin2hex($bytes));
 
         $user = User::create([
             'fname' => $data['fname'],
@@ -28,7 +32,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'brandName' => $data['brandName'],
             'tel' => $data['tel'],
-            'unique_id' => $data['unique_id'],
+            'unique_id' => $output,
             'password' => bcrypt($data['password'])
         ]);
 
