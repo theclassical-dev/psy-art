@@ -93,7 +93,7 @@ class AuthController extends Controller
         $user = auth()->user()->fname.auth()->user()->lname;
 
         if ($request->hasFile('image')) {
-            $file = $user.'.'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
+            $file = $user.'/'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
             $img->storeAs('profileImage', $file, 'public');
         }
 
@@ -129,7 +129,7 @@ class AuthController extends Controller
 
             if($request->hasFile('image')){
 
-                $file = $user.'.'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
+                $file = $user.'/'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
                 if($file == true) {
                     unlink('storage/profileImage/'.$d->image);
                 }
@@ -149,7 +149,7 @@ class AuthController extends Controller
         }
 
         return [
-            'message' => 'error'
+            'message' => 'no data to update',
         ];
     }
 }
