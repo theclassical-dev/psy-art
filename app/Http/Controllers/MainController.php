@@ -73,9 +73,10 @@ class MainController extends Controller
 
         $user = auth()->user()->fname.'-'.auth()->user()->lname;
         $img = $request->file('image');
+        $date = date('y-m');
 
         if($request->hasFile('image')){
-            $file = $user.'/'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
+            $file = $user.'/'.$date.'.'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
             $img->storeAs('arts', $file, 'public');
         }
         
@@ -114,12 +115,13 @@ class MainController extends Controller
 
         $user = auth()->user()->fname.'-'.auth()->user()->lname;
         $img = $request->file('image');
+        $date = date('y-m');
 
         if($d){
 
             if($request->hasFile('image')){
 
-                $file = $user.'/'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
+                $file = $user.'/'.$date.'.'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
     
                 if($file == true){
                     unlink('storage/arts/'.$d->image);

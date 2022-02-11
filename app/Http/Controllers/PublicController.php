@@ -37,7 +37,7 @@ class PublicController extends Controller
         $newHumanCode = 'PO-'.$dateCode.substr('0000'.$idColumn, -2);
 
         $bytes = random_bytes(2);
-        $dateCode = date('ym');
+        $dateCode = date('y-m');
         $output ='AR|'.$dateCode.'|'.(bin2hex($bytes));
         return [
             'numberic' => $newHumanCode,
