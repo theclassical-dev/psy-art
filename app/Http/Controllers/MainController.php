@@ -71,10 +71,11 @@ class MainController extends Controller
             'image' => 'required',
         ]);
 
+        $user = auth()->user()->fname.'-'.auth()->user()->lname;
         $img = $request->file('image');
 
         if($request->hasFile('image')){
-            $file = $img->getClientOriginalName();
+            $file = $user.'/'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
             $img->storeAs('arts', $file, 'public');
         }
         
@@ -111,14 +112,14 @@ class MainController extends Controller
 
         $c = Auth::user()->artDetail;
 
+        $user = auth()->user()->fname.'-'.auth()->user()->lname;
         $img = $request->file('image');
 
-        
         if($d){
 
             if($request->hasFile('image')){
 
-                $file = $img->getClientOriginalName();
+                $file = $user.'/'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
     
                 if($file == true){
                     unlink('storage/arts/'.$d->image);
@@ -167,7 +168,7 @@ class MainController extends Controller
     }
     
     public function deleteArt(Request $request, $id){
-        
+
         $d = auth()->user()->artDetail()->find($id);
 
         if($d){
