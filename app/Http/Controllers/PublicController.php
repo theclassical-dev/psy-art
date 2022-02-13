@@ -10,7 +10,7 @@ use App\Models\ArtDetail;
 use Auth;
 use File;
 use URL;
-
+use DB;
 
 class PublicController extends Controller
 {
@@ -48,17 +48,31 @@ class PublicController extends Controller
 
     public function searchArt($search){
 
-        $d = ArtDetail::with('user')->where('title', 'like', '%'.$search.'%')->
-                        orWhere('artType', 'like', '%'.$search.'%')->
-                        orWhere('brandName', 'like', '%'.$search.'%')->get();
+        $s = DB::table('users')->
+            join('art_details', 'art_details.user_id', 'users.id')->
+            where('title', 'like', '%'.$search.'%')->
+            orWhere('art_details.artType', 'like', '%'.$search.'%')->
+            orWhere('fname', 'like', '%'.$search.'%')->
+            orWhere('lname', 'like', '%'.$search.'%')->
+            orWhere('unique_id', 'like', '%'.$search.'%')->
+            orWhere('brandName', 'like', '%'.$search.'%')->get();
 
-        if($d){
             return [
-                'data' => $d
+                'data' => $s
             ];
-        }
-        return [
-            'message' => 'not found',
-        ];
+
+
+        // $d = ArtDetail::with('user')->where('title', 'like', '%'.$search.'%')->
+        //                 orWhere('artType', 'like', '%'.$search.'%')->
+        //                 orWhere('brandName', 'like', '%'.$search.'%')->get();
+
+        // if($d){
+        //     return [
+        //         'data' => $d
+        //     ];
+        // }
+        // return [
+        //     'message' => 'not found',
+        // ];
     }
 }
