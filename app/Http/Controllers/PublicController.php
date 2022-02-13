@@ -16,10 +16,12 @@ class PublicController extends Controller
 {
     public function artGallery(Request $request){
 
-        $gals = ArtDetail::select(
-            'id','title','size','description',
-            'price','discount','artType','image',
-            )->get();
+        $gals = DB::table('users')->
+                join('art_details', 'art_details.user_id', 'users.id')->
+                select('art_details.id','users.fname','users.lname','users.brandName',
+                        'art_details.title','art_details.size','art_details.description',
+                        'art_details.price','art_details.discount','art_details.artType',
+                        'art_details.image',)->get();
         $results = [];
     
         foreach($gals as $gal){
