@@ -37,12 +37,28 @@ class PublicController extends Controller
         $newHumanCode = 'PO-'.$dateCode.substr('0000'.$idColumn, -2);
 
         $bytes = random_bytes(2);
-        $dateCode = date('y-m');
+        $dateCode = date('y-m-d');
         $output ='AR|'.$dateCode.'|'.(bin2hex($bytes));
         return [
             'numberic' => $newHumanCode,
             'alphanumeric' => $output
         ];
 
+    }
+
+    public function searchArt($search){
+
+        $d = ArtDetail::with('user')->where('title', 'like', '%'.$search.'%')->
+                        orWhere('artType', 'like', '%'.$search.'%')->
+                        orWhere('brandName', 'like', '%'.$search.'%')->get();
+
+        if($d){
+            return [
+                'data' => $d
+            ];
+        }
+        return [
+            'message' => 'not found',
+        ];
     }
 }

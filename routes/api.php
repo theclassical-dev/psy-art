@@ -19,6 +19,10 @@ use App\Http\Controllers\PublicController;
 // all uploaded Arts as gallery
 Route::get('/allArt', [App\Http\Controllers\PublicController::class, 'artGallery']);
 Route::get('/gen',[App\Http\Controllers\PublicController::class, 'gen']);
+
+//searchArt
+Route::get('/searchArt/{search}',[App\Http\Controllers\PublicController::class, 'searchArt']);
+
 //users
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
