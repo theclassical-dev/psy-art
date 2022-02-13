@@ -62,19 +62,5 @@ class PublicController extends Controller
             return [
                 'data' => $s
             ];
-
-
-        // $d = ArtDetail::with('user')->where('title', 'like', '%'.$search.'%')->
-        //                 orWhere('artType', 'like', '%'.$search.'%')->
-        //                 orWhere('brandName', 'like', '%'.$search.'%')->get();
-
-        // if($d){
-        //     return [
-        //         'data' => $d
-        //     ];
-        // }
-        // return [
-        //     'message' => 'not found',
-        // ];
     }
 }
