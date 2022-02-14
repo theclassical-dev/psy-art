@@ -59,7 +59,7 @@ class PublicController extends Controller
             orWhere('unique_id', 'like', '%'.$search.'%')->
             orWhere('brandName', 'like', '%'.$search.'%')->get();
 
-            return [
+        return [
                 'data' => $s
             ];
     }

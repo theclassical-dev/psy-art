@@ -79,10 +79,6 @@ class AuthController extends Controller
         ];
     }
 
-    public function get(Request $request){
-        return User::all();
-    }
-
     public function uploadProfileImage(Request $request){
         $data = $request->validate([
 

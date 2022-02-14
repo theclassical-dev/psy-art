@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\BossController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,7 +17,7 @@ use App\Http\Controllers\PublicController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// all uploaded Arts as gallery
+// all uploaded Arts for public dashboard
 Route::get('/allArt', [App\Http\Controllers\PublicController::class, 'artGallery']);
 Route::get('/gen',[App\Http\Controllers\PublicController::class, 'gen']);
 
@@ -36,6 +37,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
 
     Route::get('/get', [App\Http\Controllers\AdminController::class, 'get']);
     Route::post('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
+    //get all the art uploaded
+    Route::get('/all-artwork', [App\Http\Controllers\BossController::class, 'artArtwork']);
     
 });
 

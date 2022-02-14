@@ -42,7 +42,7 @@ class AdminController extends Controller
         $admin = Admin::where('email', $data['email'])->first();
 
         if(!$admin || !Hash::check($data['password'], $admin->password)){
-            return repsonse(['message' => 'check details']);
+            return response(['message' => 'not found']);
         }
 
         $token = $admin->createToken('adminToken')->plainTextToken;
