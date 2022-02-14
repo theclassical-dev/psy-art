@@ -26,7 +26,7 @@ class BossController extends Controller
                 select('art_details.id','users.fname','users.lname','users.brandName',
                         'art_details.title','art_details.size','art_details.description',
                         'art_details.price','art_details.discount','art_details.artType',
-                        'art_details.image',)->get();
+                        'art_details.image','art_details.status')->get();
         $results = [];
     
         foreach($gals as $gal){
@@ -76,5 +76,19 @@ class BossController extends Controller
         return [
             'message' => 'not found',
         ];
+    }
+
+    //all sold and sale 
+    public function getSoldSale(){
+
+        $sold = ArtDetail::where('status', '=', 'Sold')->first();
+        $sale = ArtDetail::where('status', '=', 'Sale')->first();
+
+        $response = [
+            'sold' => $sold,
+            'sale' => $sale
+        ];
+
+        return $response;
     }
 }

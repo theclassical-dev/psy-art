@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
     Route::get('/count-registeredUsers', [App\Http\Controllers\BossController::class, 'countUser']);
     //update from sale to sold
     Route::put('/update-to-sold/{id}', [App\Http\Controllers\BossController::class, 'artSold']);
+    //get count of sold and sales
+    Route::get('/get-sold-sale', [App\Http\Controllers\BossController::class, 'getSoldSale']);
+
 });
 
 //user middleware
