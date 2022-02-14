@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Models\AccDetail;
 use App\Models\ArtDetail;
+use App\Models\User;
 use Auth;
 use File;
 use URL;
@@ -34,5 +35,26 @@ class BossController extends Controller
         } 
         return response()->json($results);
     
+    }
+
+    public function status(Request $request){
+
+    }
+
+    // count registered users
+    public function countUser(){
+        $d = User::all()->count();
+
+        if($d > 0){
+
+            return [
+                'data' => $d
+            ] ;
+        }
+
+        return [
+            'data' => 0
+        ];
+        
     }
 }
