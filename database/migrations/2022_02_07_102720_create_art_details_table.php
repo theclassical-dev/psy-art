@@ -22,6 +22,7 @@ class CreateArtDetailsTable extends Migration
             $table->string('discount')->nullable();
             $table->string('artType');
             $table->string('image');
+            $table->string('status')->default('Sale');
             $table->string('user_id');
             $table->timestamps();
         });

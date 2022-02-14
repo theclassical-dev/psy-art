@@ -57,4 +57,24 @@ class BossController extends Controller
         ];
         
     }
+
+    //update art status
+    public function artSold(Request $request, $id){
+
+        $d = ArtDetail::find($id);
+        if($d){
+
+            $d->update([
+                'status' => 'Sold',
+            ]);
+            return [
+                'message' => 'updated successfully',
+                'data' => $d
+            ];
+        }
+
+        return [
+            'message' => 'not found',
+        ];
+    }
 }

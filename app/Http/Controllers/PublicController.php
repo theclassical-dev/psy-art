@@ -21,7 +21,7 @@ class PublicController extends Controller
                 select('art_details.id','users.fname','users.lname','users.brandName',
                         'art_details.title','art_details.size','art_details.description',
                         'art_details.price','art_details.discount','art_details.artType',
-                        'art_details.image',)->get();
+                        'art_details.image','art_details.status')->get();
         $results = [];
     
         foreach($gals as $gal){

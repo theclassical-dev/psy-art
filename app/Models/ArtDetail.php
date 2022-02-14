@@ -10,7 +10,7 @@ class ArtDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'size', 'description','price', 'discount','artType','image','user_id'
+        'title', 'size', 'description','price', 'discount','artType','image','status','user_id'
     ];
 
     public function user(){

@@ -64,16 +64,18 @@ class MainController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'size' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required|string|unique:art_details,description',
             'price' => 'required|string',
             'discount' => 'nullable|string',
             'artType' => 'required|string',
             'image' => 'required',
+
         ]);
 
         $user = auth()->user()->fname.'-'.auth()->user()->lname;
         $img = $request->file('image');
         $date = date('y-m');
+        $sale = 'Sale';
 
         if($request->hasFile('image')){
             $file = $user.'/'.$date.'.'.bin2hex(random_bytes(10)).'.'.$img->getClientOriginalName();
@@ -88,7 +90,9 @@ class MainController extends Controller
             'discount' => $data['discount'],
             'artType' => $data['artType'],
             'image' => $file,
-            'user_id' => auth()->user()->id
+            'status' => 'Sale',
+            'user_id' => auth()->user()->id,
+            
         ]);
         
         $imgRes = [
