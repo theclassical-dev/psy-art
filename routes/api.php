@@ -37,10 +37,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
 
     Route::get('/get', [App\Http\Controllers\AdminController::class, 'get']);
     Route::post('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
-
     //get all the art uploaded
     Route::get('/all-artwork', [App\Http\Controllers\BossController::class, 'artArtwork']);
-
     //count registered CreateUsers
     Route::get('/count-registeredUsers', [App\Http\Controllers\BossController::class, 'countUser']);
     //update from sale to sold
