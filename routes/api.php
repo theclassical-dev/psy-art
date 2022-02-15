@@ -23,6 +23,8 @@ Route::get('/gen',[App\Http\Controllers\PublicController::class, 'gen']);
 
 //searchArt
 Route::get('/searchArt/{search}',[App\Http\Controllers\PublicController::class, 'searchArt']);
+// buyer 
+Route::post('/buyer/register', [App\Http\Controllers\BuyerController::class, 'Bregister']);
 
 //users
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
@@ -50,6 +52,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
 
 //user middleware
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function () {
+Route::get('/gen',[App\Http\Controllers\PublicController::class, 'gen']);
 
     Route::get('/getus', [App\Http\Controllers\AuthController::class, 'get']);
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
@@ -63,6 +66,10 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
     //profile Image 
     Route::post('/upload-profile-image', [App\Http\Controllers\AuthController::class, 'uploadProfileImage']);
     Route::put('/update-profile-image/{id}', [App\Http\Controllers\AuthController::class, 'updateProfileImage']);
+});
+
+//buyers middleware
+Route::group(['middleware' => ['auth:buyer'], 'prefix' => 'buyer'], function() {
 });
 
 

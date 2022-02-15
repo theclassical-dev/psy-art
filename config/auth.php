@@ -48,6 +48,11 @@ return [
         'buyer' => [
             'driver' => 'sanctum',
             'provider' => 'buyers',
+        ],
+        
+        'user' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
         ]
     ],
 
