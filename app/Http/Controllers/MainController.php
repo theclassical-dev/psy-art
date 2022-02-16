@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Models\AccDetail;
 use App\Models\ArtDetail;
+use App\Models\User;
 use Auth;
 use File;
 use URL;
@@ -188,5 +189,9 @@ class MainController extends Controller
         return [
             'message' => 'No is data available'
         ];
+    }
+
+    public function getall(Request $request){
+        return User::all();
     }
 }

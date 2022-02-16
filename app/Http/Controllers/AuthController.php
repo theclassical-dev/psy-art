@@ -182,4 +182,27 @@ class AuthController extends Controller
 
         return response()->json($response, 201);
     }
+
+    public function Blogin(Request $request){
+
+        $data = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        //check user 
+        $buyer = Buyer::where('email', $data['email'])->first();
+
+        if(!$buyer || !Hash::check($data['password'], $buyer->password)){
+            return response(['message' => 'check inserted details'], 401);
+        }
+        $token = $buyer->createToken('buyerToken')->plainTextToken;
+
+        $response = [
+            'buyer' => $buyer,
+            'token' => $token
+        ];
+
+        return response($response, 201);
+    }
 }

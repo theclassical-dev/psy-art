@@ -24,7 +24,8 @@ Route::get('/gen',[App\Http\Controllers\PublicController::class, 'gen']);
 //searchArt
 Route::get('/searchArt/{search}',[App\Http\Controllers\PublicController::class, 'searchArt']);
 // buyer 
-Route::post('/buyer/register', [App\Http\Controllers\BuyerController::class, 'Bregister']);
+Route::post('/buyer/register', [App\Http\Controllers\AuthController::class, 'Bregister']);
+Route::post('/buyer/login', [App\Http\Controllers\AuthController::class, 'Blogin']);
 
 //users
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
@@ -51,7 +52,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'boss'], function () {
 });
 
 //user middleware
-Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function () {
+Route::group(['middleware' => ['auth:user'], 'prefix' => 'user'], function () {
 Route::get('/gen',[App\Http\Controllers\PublicController::class, 'gen']);
 
     Route::get('/getus', [App\Http\Controllers\AuthController::class, 'get']);
