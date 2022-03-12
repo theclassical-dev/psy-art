@@ -65,6 +65,6 @@ class AdminController extends Controller
     }
 
     public function get(Request $request){
-        return Admin::all();
+        return auth()->guard('admin')->user()->email;
     }
 }
