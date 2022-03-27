@@ -170,7 +170,7 @@ class MainController extends Controller
         }
 
         return [
-            'message' => 'No is data available'
+            'message' => 'No Record Found'
         ];
     }
     
